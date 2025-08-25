@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vaquinha</title>
+<style>
+  :root{
+    --accent:#c2185b;
+    --bg:#ffe4ec;
+    --card:#fff;
+    --text:#222;
+    --success:#27ae60;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+    padding:18px;
+  }
+  header{ text-align:center; margin-bottom:18px; }
+  header h1{ margin:6px 0; color:var(--accent); font-size:1.8rem; }
+
+  .card{
+    background:var(--card);
+    border-radius:12px;
+    padding:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    max-width:760px;
+    margin:12px auto;
+  }
+
+  .highlight{
+    background:#ffeef4;
+    border-left:6px solid var(--accent);
+    padding:12px;
+    border-radius:8px;
+    text-align:center;
+  }
+
+  .pix{
+    font-weight:700;
+    font-size:1.05rem;
+    color: var(--accent);
+    word-break:break-all;
+    margin:8px 0;
+  }
+
+  .buttons{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:12px; }
+
+  button{
+    background:var(--accent);
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+  }
+  button.secondary{
+    background:#444;
+  }
+  button:active{ transform:translateY(1px); }
+
+  .values{ display:flex; gap:12px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+  .value{
+    background:#f0fff4;
+    border-radius:8px;
+    padding:10px 14px;
+    font-weight:700;
+    color:var(--success);
+    box-shadow:0 3px 8px rgba(39,174,96,0.06);
+  }
+
+  .note{ margin-top:12px; text-align:center; color:#555; font-size:0.98rem; }
+
+  footer{ max-width:760px; margin:20px auto; text-align:center; font-size:0.9rem; color:#666; }
+
+  footer a{ color:var(--accent); text-decoration:none; }
+
+  @media (max-width:520px){
+    .card{ padding:14px; margin:10px 10px; }
+    .buttons{ gap:8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Vaquinha</h1>
+  <p>Ajude no tratamento e reforma de adaptação da casa</p>
+</header>
+
+<main class="card">
+
+  <p style="color:#444; text-align:justify;">
+    Olá, meu nome é Adriana. Sou paciente oncológica há 2 anos e 6 meses.  
+    Fui diagnosticada com câncer de mama metastático e, com o decorrer do tratamento, desenvolvi uma polineuropatia nas pernas causada pelo uso prolongado de uma quimioterapia, o que me impossibilitou de andar.
+  </p>
+
+  <p style="color:#444; text-align:justify;">
+    Para continuar o tratamento e conseguir adaptar minha casa às minhas necessidades, iniciei esta vaquinha.  
+    Ganhei uma cadeira de rodas motorizada e uma de banho, mas ambas são mais largas e não consigo acessar alguns cômodos da minha casa.
+  </p>
+
+  <p style="color:#444; text-align:justify;">
+    Preciso realizar uma pequena reforma para garantir minha locomoção e segurança dentro de casa.  
+    Qualquer ajuda será recebida com muito carinho e gratidão.
+  </p>
+
+  <div class="highlight">
+    <div>💳 <strong>Chave Pix:</strong></div>
+    <div class="pix" id="pixKey">adrianinhadinha7@gmail.com</div>
+    <small>Nome para identificação: <strong>Adriana Maria Santos Almeida</strong></small>
+
+    <div class="buttons">
+      <button onclick="copiarPix()">📋 Copiar Pix</button>
+      <button class="secondary" onclick="abrirWhatsApp()">💬 Compartilhar no WhatsApp</button>
+    </div>
+
+    <div style="text-align:center; margin-top:12px;">
+      🌐 Acesse a vaquinha pelo Instagram: 
+      <a href="https://www.instagram.com/adrianaa2022_" target="_blank" style="color:var(--accent); font-weight:700;">
+        @adrianaa2022_
+      </a>
+    </div>
+  </div>
+
+  <section style="margin-top:18px;">
+    <h3 style="text-align:center; margin-bottom:8px;">Valores sugeridos</h3>
+    <div class="values">
+      <div class="value">R$ 10</div>
+      <div class="value">R$ 30</div>
+      <div class="value">R$ 50</div>
+      <div class="value">R$ 100</div>
+    </div>
+    <p class="note">💡 Qualquer valor é uma grande ajuda — sua generosidade importa!</p>
+  </section>
+</main>
+
+<footer>
+  <div>Vaquinha organizada com amor por amigos e familiares. Confirme sempre a chave Pix antes de doar.</div>
+  <div style="margin-top:6px;">📸 Instagram: <a href="https://www.instagram.com/adrianaa2022_" target="_blank">@adrianaa2022_</a></div>
+</footer>
+
+<script>
+  function copiarPix(){
+    const pixKey = document.getElementById('pixKey').innerText.trim();
+
+    // Cria um input temporário (funciona em celulares)
+    const tempInput = document.createElement('input');
+    tempInput.value = pixKey;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // Mobile
+
+    try {
+      const sucesso = document.execCommand('copy');
+      if(sucesso){
+        alert('Chave Pix copiada!');
+      } else {
+        alert('Não foi possível copiar. Copie manualmente: ' + pixKey);
+      }
+    } catch(err){
+      alert('Erro ao copiar Pix: ' + err);
+    }
+
+    document.body.removeChild(tempInput);
+  }
+
+  function abrirWhatsApp(){
+    const pixKey = document.getElementById('pixKey').innerText.trim();
+    const msg = `🙏 Ajude na vaquinha da Adriana 💕
+Ela luta contra um câncer de mama metastático e precisa adaptar sua casa para se locomover com segurança.
+
+💳 Chave Pix: ${pixKey}
+Nome: Adriana Maria Santos Almeida
+
+💡 Tutorial para doar:
+1️⃣ Abra o Instagram: @adrianaa2022_
+2️⃣ Clique no link da vaquinha no perfil dela.
+3️⃣ Escolha o valor desejado e realize a doação.
+4️⃣ Compartilhe com amigos para ajudar ainda mais! 
+
+Qualquer valor é uma grande ajuda!`;
+
+    const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
